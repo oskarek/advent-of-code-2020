@@ -7,3 +7,5 @@ My solutions to the problems from [Advent of Code
 2020](https://adventofcode.com/2020).
 
 ## Links to the problems and solutions
+
+- [Day 1](src/Day1)

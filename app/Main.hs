@@ -3,11 +3,15 @@ module Main (main) where
 import Data.Map (Map, (!?))
 import qualified Data.Map as M
 import qualified Data.Text.IO as TIO
+import qualified Day1.Day1 as Day1
 import Options.Applicative
 import Types.Problem (Problem, printSolution)
 
 problems :: Map Int Problem
-problems = M.empty
+problems =
+  M.fromList
+    [ (1, Day1.problem)
+    ]
 
 main :: IO ()
 main = do
