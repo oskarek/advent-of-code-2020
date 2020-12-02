@@ -4,13 +4,15 @@ import Data.Map (Map, (!?))
 import qualified Data.Map as M
 import qualified Data.Text.IO as TIO
 import qualified Day1.Day1 as Day1
+import qualified Day2.Day2 as Day2
 import Options.Applicative
 import Types.Problem (Problem, printSolution)
 
 problems :: Map Int Problem
 problems =
   M.fromList
-    [ (1, Day1.problem)
+    [ (1, Day1.problem),
+      (2, Day2.problem)
     ]
 
 main :: IO ()

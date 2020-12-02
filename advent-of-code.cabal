@@ -49,8 +49,12 @@ library
   hs-source-dirs:      src
   exposed-modules:     Types.Parser
                      , Types.Problem
-                     , Misc.ListFunctions
+                     , AdventPrelude.Bool
+                     , AdventPrelude.List
                      , Day1.Day1
+                     , Day2.Day2
+                     , Day2.Parser
+                     , Day2.Types
 
 executable advent-of-code
   import:              common-options

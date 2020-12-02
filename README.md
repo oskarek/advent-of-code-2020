@@ -9,3 +9,4 @@ My solutions to the problems from [Advent of Code
 ## Links to the problems and solutions
 
 - [Day 1](src/Day1)
+- [Day 2](src/Day2)

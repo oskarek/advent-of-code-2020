@@ -1,8 +1,8 @@
 module Day1.Day1 (problem, solveN) where
 
+import AdventPrelude.List (subsetsOfSize)
 import Control.Arrow ((&&&))
 import Data.List (find)
-import Misc.ListFunctions (subsetsOfSize)
 import Text.Megaparsec (many)
 import qualified Types.Parser as P
 import Types.Problem (Problem (..))
