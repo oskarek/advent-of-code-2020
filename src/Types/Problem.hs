@@ -3,12 +3,13 @@
 
 module Types.Problem (Problem (..), printSolution) where
 
+import Control.Arrow (Arrow ((&&&)))
 import Data.Text (Text)
 import Types.Parser (Parser, parse, printParseError)
-
 data Problem = forall a b c. (Show b, Show c) =>
   Problem { parser :: Parser a
-          , solve :: a -> (b, c) }
+          , solvePartOne :: a -> b
+          , solvePartTwo :: a -> c }
 
 printSolutions :: (Show a, Show b) => (a, b) -> String
 printSolutions (s1, s2) =
@@ -16,5 +17,5 @@ printSolutions (s1, s2) =
 
 printSolution :: Problem -> Text -> String
 printSolution Problem {..} input =
-  let parseRes = solve <$> parse parser input
+  let parseRes = (solvePartOne &&& solvePartTwo) <$> parse parser input
    in either printParseError printSolutions parseRes

@@ -1,7 +1,6 @@
 module Day1.Day1 (problem, solveN) where
 
 import AdventPrelude.List (subsetsOfSize)
-import Control.Arrow ((&&&))
 import Data.List (find)
 import Text.Megaparsec (many)
 import qualified Types.Parser as P
@@ -14,5 +13,6 @@ problem :: Problem
 problem =
   Problem
     { parser = many P.int,
-      solve = solveN 2 &&& solveN 3
+      solvePartOne = solveN 2,
+      solvePartTwo = solveN 3
     }

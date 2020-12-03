@@ -4,7 +4,6 @@ module Day2.Day2 where
 
 import AdventPrelude.Bool (xor)
 import AdventPrelude.List (occurrences)
-import Control.Arrow ((&&&))
 import qualified Day2.Parser
 import Day2.Types
 import Types.Problem (Problem (..))
@@ -22,5 +21,6 @@ problem :: Problem
 problem =
   Problem
     { parser = Day2.Parser.input,
-      solve = length . filter isValid1 &&& length . filter isValid2
+      solvePartOne = length . filter isValid1,
+      solvePartTwo = length . filter isValid2
     }
