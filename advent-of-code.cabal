@@ -55,6 +55,9 @@ library
                      , Day2.Day2
                      , Day2.Parser
                      , Day2.Types
+                     , Day3.Day3
+                     , Day3.Parser
+                     , Day3.Types
 
 executable advent-of-code
   import:              common-options

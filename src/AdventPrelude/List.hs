@@ -1,6 +1,7 @@
 module AdventPrelude.List
   ( subsetsOfSize,
     occurrences,
+    takeEvery,
   )
 where
 
@@ -14,3 +15,8 @@ subsetsOfSize n (x : xs) =
 -- | Get the number of occurrences of a specific element in a list.
 occurrences :: Eq a => a -> [a] -> Int
 occurrences element = length . filter (== element)
+
+-- | Get every nth element of the list, starting with the first.
+takeEvery :: Int -> [a] -> [a]
+takeEvery _ [] = []
+takeEvery n (x : xs) = x : takeEvery n (drop (n - 1) xs)
