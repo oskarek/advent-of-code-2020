@@ -10,6 +10,7 @@ module Types.Parser
     lexeme,
     symbol,
     int,
+    intInRange,
     signedInt,
     stringLiteral,
     parens,
@@ -24,7 +25,8 @@ module Types.Parser
   )
 where
 
-import Control.Monad (void)
+import Control.Monad (guard, void)
+import Data.Ix (inRange)
 import Data.Text (Text)
 import Data.Void (Void)
 import Text.Megaparsec
@@ -59,6 +61,12 @@ symbol = L.symbol sc
 
 int :: Parser Int
 int = lexeme L.decimal
+
+intInRange :: (Int, Int) -> Parser Int
+intInRange range = do
+  n <- int
+  guard (inRange range n)
+  return n
 
 signedInt :: Parser Int
 signedInt = L.signed sc int

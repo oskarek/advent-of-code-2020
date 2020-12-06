@@ -6,6 +6,7 @@ import qualified Data.Text.IO as TIO
 import qualified Day1.Day1 as Day1
 import qualified Day2.Day2 as Day2
 import qualified Day3.Day3 as Day3
+import qualified Day4.Day4 as Day4
 import Options.Applicative
 import Types.Problem (Problem, printSolution)
 
@@ -14,7 +15,8 @@ problems =
   M.fromList
     [ (1, Day1.problem),
       (2, Day2.problem),
-      (3, Day3.problem)
+      (3, Day3.problem),
+      (4, Day4.problem)
     ]
 
 main :: IO ()
