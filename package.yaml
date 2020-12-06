@@ -1,0 +1,54 @@
+name: advent-of-code
+version: 0.0.0.0
+synopsis: See README for more info
+description: See README for more info
+license: MIT
+license-file: LICENSE
+author: Oskar Ek
+maintainer: Oskar Ek <oskarek24@gmail.com>
+copyright: 2020 Oskar Ek
+extra-doc-files: README.md
+github: "oskarek/advent-of-code-2020"
+
+ghc-options:
+  - -Wall
+  - -Wcompat
+  - -Widentities
+  - -Wincomplete-uni-patterns
+  - -Wincomplete-record-updates
+
+dependencies:
+  - base >= 4.7 && < 5
+  - containers
+  - optparse-applicative
+  - megaparsec
+  - text
+  - mtl
+  - safe
+
+library:
+  source-dirs: src
+
+executables:
+  advent-of-code:
+    main: Main.hs
+    source-dirs: app
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - advent-of-code
+
+tests:
+  advent-of-code-test:
+    main: Spec.hs
+    source-dirs: test
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - advent-of-code
+      - hspec
+      - QuickCheck
