@@ -26,6 +26,8 @@ dependencies:
   - mtl
   - safe
   - parser-combinators
+  - lens-simple
+  - utility-ht
 
 library:
   source-dirs: src

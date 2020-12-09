@@ -10,6 +10,7 @@ import qualified Day4.Day4 as Day4
 import qualified Day5.Day5 as Day5
 import qualified Day6.Day6 as Day6
 import qualified Day7.Day7 as Day7
+import qualified Day8.Day8 as Day8
 import Options.Applicative
 import Types.Problem (Problem, printSolution)
 
@@ -22,7 +23,8 @@ problems =
       (4, Day4.problem),
       (5, Day5.problem),
       (6, Day6.problem),
-      (7, Day7.problem)
+      (7, Day7.problem),
+      (8, Day8.problem)
     ]
 
 main :: IO ()
