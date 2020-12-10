@@ -4,6 +4,7 @@ import Data.Map (Map, (!?))
 import qualified Data.Map as M
 import qualified Data.Text.IO as TIO
 import qualified Day1.Day1 as Day1
+import qualified Day10.Day10 as Day10
 import qualified Day2.Day2 as Day2
 import qualified Day3.Day3 as Day3
 import qualified Day4.Day4 as Day4
@@ -13,6 +14,18 @@ import qualified Day7.Day7 as Day7
 import qualified Day8.Day8 as Day8
 import qualified Day9.Day9 as Day9
 import Options.Applicative
+  ( argument,
+    auto,
+    execParser,
+    fullDesc,
+    header,
+    help,
+    helper,
+    info,
+    metavar,
+    progDesc,
+    (<**>),
+  )
 import Types.Problem (Problem, printSolution)
 
 problems :: Map Int Problem
@@ -26,7 +39,8 @@ problems =
       (6, Day6.problem),
       (7, Day7.problem),
       (8, Day8.problem),
-      (9, Day9.problem)
+      (9, Day9.problem),
+      (10, Day10.problem)
     ]
 
 main :: IO ()
