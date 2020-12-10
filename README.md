@@ -15,3 +15,4 @@ My solutions to the problems from [Advent of Code
 - [Day 6](src/Day6)
 - [Day 7](src/Day7)
 - [Day 8](src/Day8)
+- [Day 9](src/Day9)
