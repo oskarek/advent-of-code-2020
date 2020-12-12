@@ -28,6 +28,7 @@ dependencies:
   - parser-combinators
   - lens-simple
   - utility-ht
+  - linear
 
 library:
   source-dirs: src

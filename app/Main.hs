@@ -6,6 +6,7 @@ import qualified Data.Text.IO as TIO
 import qualified Day1.Day1 as Day1
 import qualified Day10.Day10 as Day10
 import qualified Day11.Day11 as Day11
+import qualified Day12.Day12 as Day12
 import qualified Day2.Day2 as Day2
 import qualified Day3.Day3 as Day3
 import qualified Day4.Day4 as Day4
@@ -42,7 +43,8 @@ problems =
       (8, Day8.problem),
       (9, Day9.problem),
       (10, Day10.problem),
-      (11, Day11.problem)
+      (11, Day11.problem),
+      (12, Day12.problem)
     ]
 
 main :: IO ()
