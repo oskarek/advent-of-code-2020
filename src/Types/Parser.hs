@@ -39,7 +39,7 @@ import Text.Megaparsec
     manyTill,
     parse,
   )
-import Text.Megaparsec.Char (char, space1)
+import Text.Megaparsec.Char (char, hspace1)
 import qualified Text.Megaparsec.Char.Lexer as L
 
 -- Type definitions
@@ -51,7 +51,7 @@ type Parser = Parsec Void Text
 -- Convenience parsers
 
 sc :: Parser ()
-sc = L.space space1 empty empty
+sc = L.space hspace1 empty empty
 
 lexeme :: Parser a -> Parser a
 lexeme = L.lexeme sc

@@ -2,19 +2,19 @@
 
 module Day2.Parser (input) where
 
-import Day2.Types (Constraint (..), Password)
-import Text.Megaparsec (anySingle, manyTill, sepBy) -- (anySingle, many, manyTill)
-import Text.Megaparsec.Char (lowerChar, space, space1)
+import Day2.Types (Password, Policy (..))
+import Text.Megaparsec (sepEndBy, some)
+import Text.Megaparsec.Char (lowerChar, space1)
 import qualified Types.Parser as P
 
-constraint :: P.Parser Constraint
-constraint = Constraint <$> P.int <* P.symbol "-" <*> P.int <*> lowerChar
+policy :: P.Parser Policy
+policy = Policy <$> P.int <* P.symbol "-" <*> P.int <*> lowerChar
 
 password :: P.Parser Password
-password = anySingle `manyTill` space1
+password = some lowerChar
 
-passwordWithConstraint :: P.Parser (Constraint, Password)
-passwordWithConstraint = (,) <$> constraint <* P.symbol ":" <*> password
+passwordWithPolicy :: P.Parser (Policy, Password)
+passwordWithPolicy = (,) <$> policy <* P.symbol ":" <*> password
 
-input :: P.Parser [(Constraint, Password)]
-input = passwordWithConstraint `sepBy` space
+input :: P.Parser [(Policy, Password)]
+input = passwordWithPolicy `sepEndBy` space1

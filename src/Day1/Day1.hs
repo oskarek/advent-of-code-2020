@@ -1,8 +1,9 @@
 module Day1.Day1 (problem, solveN) where
 
-import AdventPrelude.List (subsetsOfSize)
+import AdventPrelude (subsetsOfSize)
 import Data.List (find)
-import Text.Megaparsec (many)
+import Text.Megaparsec (sepEndBy)
+import Text.Megaparsec.Char (newline)
 import qualified Types.Parser as P
 import Types.Problem (Problem (..))
 
@@ -12,7 +13,7 @@ solveN n = find ((== 2020) . sum) . subsetsOfSize n
 problem :: Problem
 problem =
   Problem
-    { parser = many P.int,
-      solvePartOne = solveN 2,
-      solvePartTwo = solveN 3
+    { parser = P.int `sepEndBy` newline,
+      solvePartOne = fmap product . solveN 2,
+      solvePartTwo = fmap product . solveN 3
     }

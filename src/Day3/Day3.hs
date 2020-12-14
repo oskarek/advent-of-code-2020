@@ -1,6 +1,6 @@
 module Day3.Day3 where
 
-import AdventPrelude.List (occurrences, takeEvery)
+import AdventPrelude (occurrences, takeEvery)
 import qualified Day3.Parser as Parser
 import Day3.Types (MapPos (..), Slope, TreeMap)
 import Types.Problem (Problem (..))

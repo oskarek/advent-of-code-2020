@@ -2,6 +2,8 @@ module AdventPrelude.List
   ( subsetsOfSize,
     occurrences,
     takeEvery,
+    zipNeighboursWith,
+    zipNeighbours,
   )
 where
 
@@ -20,3 +22,11 @@ occurrences element = length . filter (== element)
 takeEvery :: Int -> [a] -> [a]
 takeEvery _ [] = []
 takeEvery n (x : xs) = x : takeEvery n (drop (n - 1) xs)
+
+-- | Zip together all neighbours in the list, using the given function.
+zipNeighboursWith :: (a -> a -> b) -> [a] -> [b]
+zipNeighboursWith f l = zipWith f l (drop 1 l)
+
+-- | Zip together all neighbours in the list.
+zipNeighbours :: [a] -> [(a, a)]
+zipNeighbours = zipNeighboursWith (,)
