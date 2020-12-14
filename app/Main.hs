@@ -8,6 +8,7 @@ import qualified Day10.Day10 as Day10
 import qualified Day11.Day11 as Day11
 import qualified Day12.Day12 as Day12
 import qualified Day13.Day13 as Day13
+import qualified Day14.Day14 as Day14
 import qualified Day2.Day2 as Day2
 import qualified Day3.Day3 as Day3
 import qualified Day4.Day4 as Day4
@@ -46,7 +47,8 @@ problems =
       (10, Day10.problem),
       (11, Day11.problem),
       (12, Day12.problem),
-      (13, Day13.problem)
+      (13, Day13.problem),
+      (14, Day14.problem)
     ]
 
 main :: IO ()
