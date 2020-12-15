@@ -29,6 +29,7 @@ dependencies:
   - lens-simple
   - utility-ht
   - linear
+  - vector
 
 library:
   source-dirs: src
