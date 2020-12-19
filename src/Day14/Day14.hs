@@ -6,7 +6,7 @@ import qualified Data.Map as Map
 import qualified Day14.Parser as Parser
 import Day14.Types
 import Lens.Simple (use, view, (%=), (.=))
-import Types.Problem (Problem (..))
+import Types.Solution (Solution (..))
 
 -- | The functions represented by the bitmask bit at the given index.
 bitToFuns :: DecoderChip -> Int -> MaskBit -> [Int -> Int]
@@ -41,10 +41,16 @@ bitMaskInstrProg decChip instr = case instr of
 prog :: DecoderChip -> [BitMaskInstr] -> BitMaskProg
 prog decChip = mapM_ (bitMaskInstrProg decChip)
 
-problem :: Problem
-problem =
-  Problem
-    { parser = Parser.input,
-      solvePartOne = sum . view memory . execBitMaskProg . prog Ver1,
-      solvePartTwo = sum . view memory . execBitMaskProg . prog Ver2
+part1 :: Solution
+part1 =
+  MkSol
+    { parse = Parser.input,
+      solve = sum . view memory . execBitMaskProg . prog Ver1
+    }
+
+part2 :: Solution
+part2 =
+  MkSol
+    { parse = Parser.input,
+      solve = sum . view memory . execBitMaskProg . prog Ver2
     }

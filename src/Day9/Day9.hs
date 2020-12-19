@@ -3,7 +3,7 @@ module Day9.Day9 where
 import AdventPrelude.List (subsetsOfSize)
 import Data.List (sort)
 import qualified Day9.Parser as Parser
-import Types.Problem (Problem (..))
+import Types.Solution (Solution (..))
 
 firstDoesnt :: Int -> [Int] -> [Int] -> Maybe Int
 firstDoesnt _ _ [] = Nothing
@@ -27,10 +27,16 @@ findCont nums =
 addFirstAndLast :: [Int] -> Int
 addFirstAndLast xs = head xs + last xs
 
-problem :: Problem
-problem =
-  Problem
-    { parser = Parser.input,
-      solvePartOne = uncurry (firstDoesnt 2) . splitAt 25,
-      solvePartTwo = fmap (addFirstAndLast . sort) . findCont
+part1 :: Solution
+part1 =
+  MkSol
+    { parse = Parser.input,
+      solve = uncurry (firstDoesnt 2) . splitAt 25
+    }
+
+part2 :: Solution
+part2 =
+  MkSol
+    { parse = Parser.input,
+      solve = fmap (addFirstAndLast . sort) . findCont
     }

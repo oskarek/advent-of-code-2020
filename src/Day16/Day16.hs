@@ -4,7 +4,7 @@ import Data.Bifunctor (second)
 import Data.Ix (inRange)
 import Data.List (isPrefixOf, sortOn, transpose)
 import qualified Day16.Parser as Parser
-import Types.Problem (Problem (..))
+import Types.Solution (Solution (..))
 
 -- | Returns true if the field matches the rule.
 fieldMatchesRule :: Int -> (String, [(Int, Int)]) -> Bool
@@ -55,10 +55,16 @@ solve2 (rules, myTicket, nearbyTickets) = do
   let depIndices = fst <$> filter (("departure" `isPrefixOf`) . snd) indexedFields
   return $ product ((myTicket !!) <$> depIndices)
 
-problem :: Problem
-problem =
-  Problem
-    { parser = Parser.input,
-      solvePartOne = solve1,
-      solvePartTwo = solve2
+part1 :: Solution
+part1 =
+  MkSol
+    { parse = Parser.input,
+      solve = solve1
+    }
+
+part2 :: Solution
+part2 =
+  MkSol
+    { parse = Parser.input,
+      solve = solve2
     }

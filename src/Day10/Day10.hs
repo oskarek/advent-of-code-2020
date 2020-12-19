@@ -11,7 +11,7 @@ import Data.Maybe (mapMaybe)
 import Text.Megaparsec (sepEndBy)
 import Text.Megaparsec.Char (newline)
 import qualified Types.Parser as P
-import Types.Problem (Problem (..))
+import Types.Solution (Solution (..))
 
 type AdapterRating = Int
 
@@ -27,10 +27,16 @@ numberOfArrangements = maximum . foldl' f [(0, 1)] . List.sort
       let s = sum ((ratingMap !?) `mapMaybe` [a - 1, a - 2, a - 3])
        in insert a s ratingMap
 
-problem :: Problem
-problem =
-  Problem
-    { parser = P.int `sepEndBy` newline,
-      solvePartOne = solve1,
-      solvePartTwo = numberOfArrangements
+part1 :: Solution
+part1 =
+  MkSol
+    { parse = P.int `sepEndBy` newline,
+      solve = solve1
+    }
+
+part2 :: Solution
+part2 =
+  MkSol
+    { parse = P.int `sepEndBy` newline,
+      solve = numberOfArrangements
     }

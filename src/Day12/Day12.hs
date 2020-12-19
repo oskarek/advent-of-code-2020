@@ -5,16 +5,16 @@ import qualified Day12.Parser as Parser
 import Day12.Types (MoveType (..), NavInstr (..), NavProg, NavProgState, execNavProg, pos, velocity)
 import Lens.Simple (use, view, (%=), (+=))
 import Linear (V2 (..), (^*))
-import Types.Problem (Problem (..))
+import Types.Solution (Solution (..))
 
 -- | Rotate the vector a number of degrees, evenly divided by 90.
 rotate :: Int -> V2 Int -> V2 Int
 rotate degrees (V2 x y) =
   case (degrees `div` 90) `mod` 4 of
     0 -> V2 x y
-    1 -> V2 y (-x)
-    2 -> V2 (-x) (-y)
-    3 -> V2 (-y) x
+    1 -> V2 y (- x)
+    2 -> V2 (- x) (- y)
+    3 -> V2 (- y) x
 
 -- | Program that runs a single navigation instruction when executed.
 instrProg :: NavInstr -> NavProg
@@ -39,10 +39,16 @@ prog = mapM_ instrProg
 posDist :: NavProgState -> Int
 posDist = sum . fmap abs . view pos
 
-problem :: Problem
-problem =
-  Problem
-    { parser = Parser.navInstrs,
-      solvePartOne = posDist . execNavProg (V2 1 0) Ship . prog,
-      solvePartTwo = posDist . execNavProg (V2 10 1) Waypoint . prog
+part1 :: Solution
+part1 =
+  MkSol
+    { parse = Parser.navInstrs,
+      solve = posDist . execNavProg (V2 1 0) Ship . prog
+    }
+
+part2 :: Solution
+part2 =
+  MkSol
+    { parse = Parser.navInstrs,
+      solve = posDist . execNavProg (V2 10 1) Waypoint . prog
     }

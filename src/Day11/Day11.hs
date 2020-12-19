@@ -7,7 +7,7 @@ import qualified Data.Map as Map
 import Data.Maybe (catMaybes, isJust, mapMaybe)
 import qualified Day11.Parser as Parser
 import Day11.Types (Seat (..))
-import Types.Problem (Problem (..))
+import Types.Solution (Solution (..))
 
 -- | Find list of adjacent points for a single point.
 adjacents :: [Int] -> [[Int]]
@@ -42,9 +42,13 @@ runStep maxNeighbCount findNeighbours seats = Map.fromList ((fst &&& nextState) 
       | (seats Map.! pos == Occu) && length (filter (== Occu) adjs) > maxNeighbCount = Empty
       | otherwise = seats Map.! pos
 
-problem =
-  Problem
-    { parser = Parser.input,
-      solvePartOne = occurrences Occu . Map.elems . idempotently (runStep 3 immediateNeighbours) . mat2map,
-      solvePartTwo = occurrences Occu . Map.elems . idempotently (runStep 4 closestNeighbours) . mat2map
+sol :: (Map.Map [Int] Seat -> Map.Map [Int] Seat) -> Solution
+sol step =
+  MkSol
+    { parse = Parser.input,
+      solve = occurrences Occu . Map.elems . idempotently step . mat2map
     }
+
+part1, part2 :: Solution
+part1 = sol (runStep 3 immediateNeighbours)
+part2 = sol (runStep 4 closestNeighbours)

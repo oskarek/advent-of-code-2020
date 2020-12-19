@@ -7,7 +7,7 @@ import Data.Maybe (fromMaybe)
 import qualified Data.Set as Set
 import Text.Megaparsec (sepEndBy, some, (<|>))
 import Text.Megaparsec.Char (char, newline)
-import Types.Problem (Problem (..))
+import Types.Solution (Solution (..))
 
 -- | The state of a cube.
 data CubeState = Active | Inactive deriving (Eq)
@@ -41,10 +41,16 @@ withAdjacents board = (\pos -> (pos, fromMaybe Inactive . (board !?) <$> adjacen
 solveForDims :: Int -> [[CubeState]] -> Int
 solveForDims n = length . filter (== Active) . Map.elems . (!! 6) . iterate runStep . addDims (n - 2) . mat2map
 
-problem :: Problem
-problem =
-  Problem
-    { parser = some ((Inactive <$ char '.') <|> (Active <$ char '#')) `sepEndBy` newline,
-      solvePartOne = solveForDims 3,
-      solvePartTwo = solveForDims 4
+part1 :: Solution
+part1 =
+  MkSol
+    { parse = some ((Inactive <$ char '.') <|> (Active <$ char '#')) `sepEndBy` newline,
+      solve = solveForDims 3
+    }
+
+part2 :: Solution
+part2 =
+  MkSol
+    { parse = some ((Inactive <$ char '.') <|> (Active <$ char '#')) `sepEndBy` newline,
+      solve = solveForDims 4
     }

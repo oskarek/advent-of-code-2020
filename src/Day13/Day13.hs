@@ -3,7 +3,7 @@ module Day13.Day13 where
 import Data.List (find, foldl')
 import Data.Maybe (catMaybes, mapMaybe)
 import qualified Day13.Parser as Parser
-import Types.Problem (Problem (..))
+import Types.Solution (Solution (..))
 
 solve1 :: (Int, [Int]) -> Int
 solve1 (minT, ids) =
@@ -21,10 +21,16 @@ dividesWithOffset offset denom num = (num + offset) `mod` denom == 0
 continueFirstTwoPattern :: Enum a => [a] -> [a]
 continueFirstTwoPattern (x1 : x2 : _) = [x1, x2 ..]
 
-problem :: Problem
-problem =
-  Problem
-    { parser = Parser.input,
-      solvePartOne = solve1 . fmap catMaybes,
-      solvePartTwo = solve2 . (fmap . fmap) toInteger . snd
+part1 :: Solution
+part1 =
+  MkSol
+    { parse = Parser.input,
+      solve = solve1 . fmap catMaybes
+    }
+
+part2 :: Solution
+part2 =
+  MkSol
+    { parse = Parser.input,
+      solve = solve2 . (fmap . fmap) toInteger . snd
     }

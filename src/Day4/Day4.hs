@@ -4,13 +4,13 @@
 module Day4.Day4 where
 
 import Data.Map (keysSet, (!?))
-import Data.Maybe (mapMaybe)
+import Data.Maybe (isJust)
 import Data.Set (member)
 import qualified Day4.Parser as Parser
 import Day4.Types (EntryMap, Passport (..))
 import Text.Megaparsec (parseMaybe)
 import Types.Parser (intInRange)
-import Types.Problem (Problem (..))
+import Types.Solution (Solution (..))
 
 -- Part One
 
@@ -34,12 +34,15 @@ makePassport entries = do
   where
     parser `parsedAt` key = entries !? key >>= parseMaybe parser
 
--- Problem
+-- Solutions
 
-problem :: Problem
-problem =
-  Problem
-    { parser = Parser.input,
-      solvePartOne = length . filter hasAllRequiredEntries,
-      solvePartTwo = length . mapMaybe makePassport
+sol :: (EntryMap -> Bool) -> Solution
+sol entryMapPred =
+  MkSol
+    { parse = Parser.input,
+      solve = length . filter entryMapPred
     }
+
+part1, part2 :: Solution
+part1 = sol hasAllRequiredEntries
+part2 = sol (isJust . makePassport)

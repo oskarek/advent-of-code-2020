@@ -14,7 +14,7 @@ import Data.Set (insert, member)
 import qualified Day8.Parser as Parser
 import Day8.Types
 import Lens.Simple (use, view, (%=), (+=), (^.))
-import Types.Problem (Problem (..))
+import Types.Solution (Solution (..))
 
 -- | Program that executes a number of boot code instructions, until it loops or
 -- terminates successfully.
@@ -54,13 +54,19 @@ tryOptions :: [Seq BootCodeInstr] -> Either String BootCodeProgState
 tryOptions [] = Left "No option terminated successfully"
 tryOptions (instrs : rest) =
   case execBootCodeProg instrs prog of
-    Right endState | instrs !? (endState^.pointer) == Just End -> Right endState
+    Right endState | instrs !? (endState ^. pointer) == Just End -> Right endState
     _ -> tryOptions rest
 
-problem :: Problem
-problem =
-  Problem
-    { parser = Parser.instrs,
-      solvePartOne = fmap (view accumulator) . flip execBootCodeProg prog,
-      solvePartTwo = fmap (view accumulator) . tryOptions . generatePossibleFixes
+part1 :: Solution
+part1 =
+  MkSol
+    { parse = Parser.instrs,
+      solve = fmap (view accumulator) . flip execBootCodeProg prog
+    }
+
+part2 :: Solution
+part2 =
+  MkSol
+    { parse = Parser.instrs,
+      solve = fmap (view accumulator) . tryOptions . generatePossibleFixes
     }

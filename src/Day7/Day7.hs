@@ -4,7 +4,7 @@ import Data.Map (keys, (!?))
 import Data.Maybe (fromMaybe)
 import qualified Day7.Parser as Parser
 import Day7.Types (BagMap)
-import Types.Problem (Problem (..))
+import Types.Solution (Solution (..))
 
 contains :: BagMap -> String -> String -> Bool
 contains bagMap subBag bag =
@@ -20,10 +20,18 @@ contentCount bagMap bag =
   where
     f (qnt, name) = qnt + qnt * contentCount bagMap name
 
-problem :: Problem
-problem =
-  Problem
-    { parser = Parser.input,
-      solvePartOne = \bagMap -> length $ filter (contains bagMap "shiny gold") (keys bagMap),
-      solvePartTwo = (`contentCount` "shiny gold")
+-- Solutions
+
+part1 :: Solution
+part1 =
+  MkSol
+    { parse = Parser.input,
+      solve = \bagMap -> length $ filter (contains bagMap "shiny gold") (keys bagMap)
+    }
+
+part2 :: Solution
+part2 =
+  MkSol
+    { parse = Parser.input,
+      solve = (`contentCount` "shiny gold")
     }

@@ -6,7 +6,7 @@ import Control.Monad.State (StateT, execStateT, get, put)
 import qualified Data.Vector.Unboxed.Mutable as VM
 import Text.Megaparsec (sepBy)
 import qualified Types.Parser as P
-import Types.Problem (Problem (..))
+import Types.Solution (Solution (..))
 
 type Game s = StateT Int (ST s) ()
 
@@ -31,10 +31,16 @@ execGame endTurn startNums = runST $
     zipWithM_ (VM.write prevsVect) startNums [1 ..]
     game prevsVect (length startNums + 1) endTurn
 
-problem :: Problem
-problem =
-  Problem
-    { parser = P.int `sepBy` P.comma,
-      solvePartOne = execGame 2020,
-      solvePartTwo = execGame 30000000
+part1 :: Solution
+part1 =
+  MkSol
+    { parse = P.int `sepBy` P.comma,
+      solve = execGame 2020
+    }
+
+part2 :: Solution
+part2 =
+  MkSol
+    { parse = P.int `sepBy` P.comma,
+      solve = execGame 30000000
     }
