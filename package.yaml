@@ -30,6 +30,7 @@ dependencies:
   - utility-ht
   - linear
   - vector
+  - matrix
 
 library:
   source-dirs: src

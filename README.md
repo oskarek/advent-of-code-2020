@@ -26,3 +26,4 @@ My solutions to the problems from [Advent of Code
 - [Day 17](src/Day17)
 - [Day 18](src/Day18)
 - [Day 19](src/Day19)
+- [Day 20](src/Day20)
