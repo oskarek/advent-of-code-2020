@@ -1,8 +1,9 @@
 module Day16.Day16 where
 
-import Data.Bifunctor (second)
+import AdventPrelude
 import Data.Ix (inRange)
-import Data.List (isPrefixOf, sortOn, transpose)
+import Data.List (isPrefixOf, transpose)
+import qualified Data.Set as Set
 import qualified Day16.Parser as Parser
 import Types.Solution (Solution (..))
 
@@ -27,21 +28,12 @@ allFieldsMatch :: [Int] -> (String, [(Int, Int)]) -> Bool
 allFieldsMatch fields rule = all (`fieldMatchesRule` rule) fields
 
 -- | Get, for each index in you own ticket, all the possible fields they could represent.
-possibleFieldsPerIndex :: [(String, [(Int, Int)])] -> [[Int]] -> [(Int, [String])]
+possibleFieldsPerIndex :: [(String, [(Int, Int)])] -> [[Int]] -> [(Int, Set.Set String)]
 possibleFieldsPerIndex rules tickets =
-  let possibleFields = fmap fst . matchingRules <$> transpose tickets
+  let possibleFields = Set.fromList . fmap fst . matchingRules <$> transpose tickets
    in zip [0 ..] possibleFields
   where
     matchingRules fields = filter (allFieldsMatch fields) rules
-
--- | Given a list of possible fields per index, find a mapping respecting that requirement.
-makeAssignmentsUnique :: [(Int, [String])] -> Maybe [(Int, String)]
-makeAssignmentsUnique = assign . sortOn (length . snd)
-  where
-    assign [] = Just []
-    assign ((idx, [name]) : rest) =
-      ((idx, name) :) <$> assign (second (filter (/= name)) <$> rest)
-    assign _ = Nothing
 
 -- Solvers
 
@@ -51,7 +43,7 @@ solve1 (rules, _, nearbyTickets) = ticketScanningRate rules (concat nearbyTicket
 solve2 :: ([(String, [(Int, Int)])], [Int], [[Int]]) -> Maybe Int
 solve2 (rules, myTicket, nearbyTickets) = do
   let validsNearby = filter (`ticketIsValid` rules) nearbyTickets
-  indexedFields <- makeAssignmentsUnique (possibleFieldsPerIndex rules validsNearby)
+  indexedFields <- uniqueMapping (possibleFieldsPerIndex rules validsNearby)
   let depIndices = fst <$> filter (("departure" `isPrefixOf`) . snd) indexedFields
   return $ product ((myTicket !!) <$> depIndices)
 
