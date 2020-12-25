@@ -106,6 +106,8 @@ Simulate your seating area by applying the seating rules repeatedly until no sea
 
 Your puzzle answer was `2438`.
 
+---
+
 ## Part Two
 
 As soon as people start to arrive, you realize your mistake. People don't just care about adjacent seats - they care about **the first seat they can see** in each of those eight directions!

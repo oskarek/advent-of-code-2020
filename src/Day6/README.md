@@ -49,6 +49,8 @@ For each group, count the number of questions to which anyone answered "yes". **
 
 Your puzzle answer was `7128`.
 
+---
+
 # Part Two
 
 As you finish the last group's customs declaration, you notice that you misread one word in the instructions:

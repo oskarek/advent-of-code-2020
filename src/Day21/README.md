@@ -27,7 +27,9 @@ Determine which ingredients cannot possibly contain any of the allergens in your
 
 Your puzzle answer was `2428`.
 
---- Part Two ---
+---
+
+# Part Two
 
 Now that you've isolated the inert ingredients, you should have enough information to figure out which ingredient contains which allergen.
 

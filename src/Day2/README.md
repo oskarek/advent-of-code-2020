@@ -26,6 +26,8 @@ In the above example, **`2`** passwords are valid. The middle password, `cdefg`,
 
 Your puzzle answer was `572`.
 
+---
+
 ## Part Two
 
 While it appears you validated the passwords correctly, they don't seem to be what the Official Toboggan Corporate Authentication System is expecting.

@@ -44,6 +44,8 @@ As a sanity check, look through your list of boarding passes. **What is the high
 
 Your puzzle answer was `980`.
 
+---
+
 ## Part Two
 
 **Ding!** The "fasten seat belt" signs have turned on. Time to find your seat.

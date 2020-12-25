@@ -51,6 +51,8 @@ Count the number of **valid** passports - those that have all required fields. T
 
 Your puzzle answer was `213`.
 
+---
+
 ## Part Two
 
 The line is moving more quickly now, but you overhear airport security talking about how passports with invalid data are getting through. Better add some data validation, quick!

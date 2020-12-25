@@ -90,6 +90,8 @@ Find a chain that uses all of your adapters to connect the charging outlet to yo
 
 Your puzzle answer was `1690`.
 
+---
+
 ## Part Two
 
 To completely determine whether you have enough adapters, you'll need to figure out how many different ways they can be arranged. Every arrangement needs to connect the charging outlet to your device. The previous rules about when adapters can successfully connect still apply.
