@@ -28,3 +28,4 @@ My solutions to the problems from [Advent of Code
 - [Day 19](src/Day19)
 - [Day 20](src/Day20)
 - [Day 21](src/Day21)
+- [Day 22](src/Day22)
