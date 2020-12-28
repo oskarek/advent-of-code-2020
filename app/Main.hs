@@ -18,6 +18,7 @@ import qualified Day2.Day2 as Day2
 import qualified Day20.Day20 as Day20
 import qualified Day21.Day21 as Day21
 import qualified Day22.Day22 as Day22
+import qualified Day23.Day23 as Day23
 import qualified Day3.Day3 as Day3
 import qualified Day4.Day4 as Day4
 import qualified Day5.Day5 as Day5
@@ -64,7 +65,8 @@ problems =
       (19, (Day19.part1, Day19.part2)),
       (20, (Day20.part1, Day20.part2)),
       (21, (Day21.part1, Day21.part2)),
-      (22, (Day22.part1, Day22.part2))
+      (22, (Day22.part1, Day22.part2)),
+      (23, (Day23.part1, Day23.part2))
     ]
 
 main :: IO ()
